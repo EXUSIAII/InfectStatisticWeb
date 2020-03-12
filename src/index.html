@@ -169,6 +169,33 @@
         myChart1.setOption(myoption);
 
     }
+    function drawSec() {
+        var target = document.getElementById("foot_c");
+        target.style.color = "white";
+        target.style.backgroundColor = "#00BEC9";
+        var untarget = document.getElementById("foot_l")
+        untarget.style.color = '#00BEC9';
+        untarget.style.backgroundColor = "white";
+        var myChart1 = echarts.init(document.getElementById('main_two'));
+        let myoption = BaseOption;
+        myoption.title.text =  '全国累计治愈/累计死亡'
+        myoption.legend.data = ['累计治愈', '累计死亡'],
+            myoption.series = [{
+                name: '累计治愈',
+                type: 'line',
+                stack: '总量',
+                data: [124, 171, 243, 328, 475, 632, 892, 1153, 1540, 2050, 2649, 3281, 3996, 4740, 5911],
+            },
+                {
+                    name: '累计死亡',
+                    type: 'line',
+                    stack: '总量',
+                    data: [170, 213, 259, 304, 361, 425, 490, 563, 636, 722, 908, 1016, 1113, 1367, 1380]
+                }
+            ]
+        myChart1.setOption(myoption);
 
+    }
+</script>
     </body>
 </html>

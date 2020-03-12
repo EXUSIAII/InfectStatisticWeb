@@ -66,5 +66,80 @@
     <!-- <div id="foot_r" class="foot_intem" onclick="goBack()">返回首页</div> -->
 </div>
 </div>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    window.onload = function(){
+        draw();
+    }
+    var myChart = echarts.init(document.getElementById('main'));
+
+    // 指定图表的配置项和数据
+    var option = {
+        backgroundColor: '#FFFFFF',
+        // title: {
+        //     text: '全国地图大数据',
+        //     subtext: '',
+        //     x:'center'
+        // },
+        tooltip: {
+            trigger: 'item'
+        },
+        //左侧小导航图标
+        visualMap: {
+            show: true,
+            x: 'left',
+            y: 'bottom',
+            splitList: [{
+                start: 10000
+            }, {
+                start: 1000,
+                end: 10000
+            },
+                {
+                    start: 500,
+                    end: 999
+                }, {
+                    start: 100,
+                    end: 499
+                },
+                {
+                    start: 10,
+                    end: 99
+                }, {
+                    start: 1,
+                    end: 9
+                }, {
+                    end: 0
+                }
+            ],
+            color: ['#660208', '#8C0D0D', '#CC2929', '#FF7B69', '#FFAA85', '#FACD91', '#F2F2F2']
+        },
+
+        //配置属性
+        series: [{
+            name: '数据',
+            type: 'map',
+            mapType: 'china',
+            roam: true,
+            label: {
+                normal: {
+                    show: true //省份名称
+                },
+                emphasis: {
+                    show: false
+                }
+            },
+            data: mydata //数据
+        }]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+    myChart.on('click', function(params) {
+        // 控制台打印数据的名称
+        console.log(params.name);
+        window.localStorage.setItem("name", params.name);
+        window.location.href = 'loading.html';
+    });
         </body>
 </html>

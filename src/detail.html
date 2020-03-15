@@ -1,112 +1,112 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<title>ECharts</title>
-	<!-- 引入 echarts.js -->
-	<link rel="stylesheet" type="text/css" href="css/detail.css" />
-	<script src="js/echarts.min.js"></script>
-	<script type="text/javascript" src="js/china.js"></script>
-	<script type="text/javascript" src="js/data.js"></script>
-</head>
-<body>
-<div style="width: 100%;height: 100%;">
-	<div id="header">
-		&nbsp;&nbsp;&nbsp;省份详情页
-	</div>
-	<div id="header_sec">
-		首页
-	</div>
-	<div id="h_b">
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 13px;color: #E3E3E3;margin-bottom: 15px;">截至2020-03-10 19:30
+	<head>
+		<meta charset="utf-8">
+		<title>ECharts</title>
+		<!-- 引入 echarts.js -->
+		<link rel="stylesheet" type="text/css" href="css/detail.css" />
+		<script src="js/echarts.min.js"></script>
+		<script type="text/javascript" src="js/china.js"></script>
+		<script type="text/javascript" src="js/data.js"></script>
+	</head>
+	<body>
+		<div style="width: 100%;height: 100%;">
+			<div id="header">
+				&nbsp;&nbsp;&nbsp;省份详情页
+			</div>
+			<div id="header_sec">
+				首页
+			</div>
+			<div id="h_b">
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 13px;color: #E3E3E3;margin-bottom: 15px;">截至2020-03-10 19:30
 					全国统计</span>
-		<div id="hb_container">
-			<div class="hb_s" style="margin-left:20px;">
-				<div>
-					<div class="hb_name">&nbsp;&nbsp;&nbsp;现有确诊</div>
-					<div class="hb_nb" style="font-size:30px;color:#F5A847 ;">17624</div>
-					<div style="font-size: 13px;">&nbsp;&nbsp;&nbsp;较昨日<span style="color: #F5A847;">-1473</span></div>
+				<div id="hb_container">
+					<div class="hb_s" style="margin-left:20px;">
+						<div>
+							<div class="hb_name">&nbsp;&nbsp;&nbsp;现有确诊</div>
+							<div class="hb_nb" style="font-size:30px;color:#F5A847 ;">17624</div>
+							<div style="font-size: 13px;">&nbsp;&nbsp;&nbsp;较昨日<span style="color: #F5A847;">-1473</span></div>
+						</div>
+					</div>
+					<div class="hb_s">
+						<div style="width: 100%;padding: 0px 20px;">
+							<div class="hb_name">&nbsp;&nbsp;&nbsp;累计确诊</div>
+							<div class="hb_nb" style="font-size:30px;color: #F22741;">349</div>
+							<div style="font-size: 13px;">&nbsp;&nbsp;&nbsp;较昨日<span style="color: #F22741;">+36</span></div>
+						</div>
+					</div>
+					<div class="hb_s">
+						<div style="width: 100%;padding: 0px 20px;">
+							<div class="hb_name">&nbsp;&nbsp;&nbsp;累计治愈</div>
+							<div class="hb_nb" style="font-size:30px;color: #46C2CC;">7732</div>
+							<div style="font-size: 13px;">&nbsp;&nbsp;&nbsp;较昨日<span style="color: #46C2CC;">+478</span></div>
+						</div>
+					</div>
+					<div class="hb_s">
+						<div style="width: 100%;padding: 0px 20px;">
+							<div class="hb_name">&nbsp;&nbsp;&nbsp;累计死亡</div>
+							<div class="hb_nb" style="font-size:30px;color: #12127E;">7732</div>
+							<div style="font-size: 13px;">&nbsp;&nbsp;&nbsp;较昨日<span style="color: #12127E;">+478</span></div>
+						</div>
+					</div>
 				</div>
 			</div>
-			<div class="hb_s">
-				<div style="width: 100%;padding: 0px 20px;">
-					<div class="hb_name">&nbsp;&nbsp;&nbsp;累计确诊</div>
-					<div class="hb_nb" style="font-size:30px;color: #F22741;">349</div>
-					<div style="font-size: 13px;">&nbsp;&nbsp;&nbsp;较昨日<span style="color: #F22741;">+36</span></div>
-				</div>
+			<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+			<div id="broad">
+				&nbsp;疫情趋势
 			</div>
-			<div class="hb_s">
-				<div style="width: 100%;padding: 0px 20px;">
-					<div class="hb_name">&nbsp;&nbsp;&nbsp;累计治愈</div>
-					<div class="hb_nb" style="font-size:30px;color: #46C2CC;">7732</div>
-					<div style="font-size: 13px;">&nbsp;&nbsp;&nbsp;较昨日<span style="color: #46C2CC;">+478</span></div>
-				</div>
-			</div>
-			<div class="hb_s">
-				<div style="width: 100%;padding: 0px 20px;">
-					<div class="hb_name">&nbsp;&nbsp;&nbsp;累计死亡</div>
-					<div class="hb_nb" style="font-size:30px;color: #12127E;">7732</div>
-					<div style="font-size: 13px;">&nbsp;&nbsp;&nbsp;较昨日<span style="color: #12127E;">+478</span></div>
-				</div>
+			<div id="main"></div>
+			<div id="foot">
+				<div id="foot_l" class="foot_intem" onclick="draw()">新增确证/疑似确证</div>
+				<div id="foot_c" class="foot_intem" onclick="drawSec()">累计治愈/死亡趋势</div>
+				<div id="foot_r" class="foot_intem" onclick="goBack()">返回首页</div>
 			</div>
 		</div>
-	</div>
-	<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-	<div id="broad">
-		&nbsp;疫情趋势
-	</div>
-	<div id="main"></div>
-	<div id="foot">
-		<div id="foot_l" class="foot_intem" onclick="draw()">新增确证/疑似确证</div>
-		<div id="foot_c" class="foot_intem" onclick="drawSec()">累计治愈/死亡趋势</div>
-		<div id="foot_r" class="foot_intem" onclick="goBack()">返回首页</div>
-	</div>
-</div>
-<script type="text/javascript">
-	window.onload = function() {
-		var name = window.localStorage.getItem("name");
-		var header = document.getElementById("header_sec").innerText = name;
-		draw();
-	}
+		<script type="text/javascript">
+			window.onload = function() {
+				var name = window.localStorage.getItem("name");
+				var header = document.getElementById("header_sec").innerText = name;
+				draw();
+			}
 
-	function draw() {
-		var name = window.localStorage.getItem("name");
-		let data = getData(name);
-		var target = document.getElementById("foot_l");
-		target.style.color = "white";
-		target.style.backgroundColor = "#00BEC9";
-		var untarget = document.getElementById("foot_c")
-		untarget.style.color = '#00BEC9';
-		untarget.style.backgroundColor = "white";
-		var myChart = echarts.init(document.getElementById('main'));
-		let myoption = BaseOption;
-		myoption.title.text = name + ' 新增确诊/疑似趋势'
-		myoption.legend.data = ['新增确诊', '新增疑似'],
+			function draw() {
+				var name = window.localStorage.getItem("name");
+				let data = getData(name);
+				var target = document.getElementById("foot_l");
+				target.style.color = "white";
+				target.style.backgroundColor = "#00BEC9";
+				var untarget = document.getElementById("foot_c")
+				untarget.style.color = '#00BEC9';
+				untarget.style.backgroundColor = "white";
+				var myChart = echarts.init(document.getElementById('main'));
+				let myoption = BaseOption;
+				myoption.title.text = name + ' 新增确诊/疑似趋势'
+				myoption.legend.data = ['新增确诊', '新增疑似'],
 				myoption.series = data;
-		myChart.setOption(myoption);
+				myChart.setOption(myoption);
 
-	}
+			}
 
-	function drawSec() {
-		var name = window.localStorage.getItem("name");
-		let data = getDataSec(name);
-		var target = document.getElementById("foot_c");
-		target.style.color = "white";
-		target.style.backgroundColor = "#00BEC9";
-		var untarget = document.getElementById("foot_l")
-		untarget.style.color = '#00BEC9';
-		untarget.style.backgroundColor = "white";
-		var myChart = echarts.init(document.getElementById('main'));
-		let myoption = BaseOption;
-		myoption.title.text = name + ' 累计治愈/累计死亡'
-		myoption.legend.data = ['累计治愈', '累计死亡'],
+			function drawSec() {
+				var name = window.localStorage.getItem("name");
+				let data = getDataSec(name);
+				var target = document.getElementById("foot_c");
+				target.style.color = "white";
+				target.style.backgroundColor = "#00BEC9";
+				var untarget = document.getElementById("foot_l")
+				untarget.style.color = '#00BEC9';
+				untarget.style.backgroundColor = "white";
+				var myChart = echarts.init(document.getElementById('main'));
+				let myoption = BaseOption;
+				myoption.title.text = name + ' 累计治愈/累计死亡'
+				myoption.legend.data = ['累计治愈', '累计死亡'],
 				myoption.series = data;
-		myChart.setOption(myoption);
-
-	}
-	function goBack(){
-		window.location.href ='index.html';
-	}
-</script>
-</body>
+				myChart.setOption(myoption);
+				
+			}
+			function goBack(){
+				window.location.href ='index.html';
+			}
+		</script>
+	</body>
 </html>

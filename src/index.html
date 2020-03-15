@@ -8,47 +8,103 @@
 		<script src="js/echarts.min.js"></script>
 		<script type="text/javascript" src="js/china.js"></script>
 		<script type="text/javascript" src="js/data.js"></script>
+		<style>
+			body {
+				background-color: #10aeb5;
+			}
+			#home {
+				background-color: white;
+				width: 60%;
+				margin: 0 20%;
+				border-radius: 10px;
+				min-height: 300px;
+				padding: 10px;
+			}
+			.board {
+				margin-top: 50px;
+				display: -webkit-box;
+				display: -ms-flexbox;
+				display: flex;
+				-ms-flex-wrap: nowrap;
+			}
+			.board-item {
+				flex: 1 1 30%;
+				text-align: center;
+			}
+			.board-item span {
+				font-size: 20px;
+			}
+			.board-item-1 {
+				font-size: .9375rem;
+				height: .9375rem;
+				line-height: .9375rem;
+				margin-bottom: .625rem;
+				color: #333;
+				position: relative;
+			}
+			.board-item-number{
+				height: 1.3125rem;
+				line-height: 1.3125rem;
+				font-family: "Fira Code", monospace;
+				font-weight: 700;
+				font-size: 30px;
+			}
+			#map {
+				width: 800px;
+				height: 600px;
+				margin: 0 auto;
+			}
+		</style>
 	</head>
 	<body>
-		<div style="width: 100%;height: 100%;">
-			<div id="header">
-				&nbsp;&nbsp;&nbsp;首页
-			</div>
-			<div id="h_b">
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 13px;color: #E3E3E3;">截至2020-03-10 19:30 全国统计</span>
-				<div id="hb_container">
-					<div class="hb_s">
-						<div>
-							<div style="font-size: 13px;color: #E3E3E3;">&nbsp;&nbsp;&nbsp;较昨日<span style="color: #E1374B;">-1473</span></div>
-							<div class="hb_nb" style="font-size:30px;color:#E1374B ;">17624</div>
-							<div>&nbsp;&nbsp;&nbsp;现存确诊</div>
-							<div style="font-size: 13px;color: #E3E3E3;">&nbsp;&nbsp;&nbsp;较昨日<span style="color: #A50515;">+30</span></div>
-							<div class="hb_nb" style="font-size:30px;color: #A50515;">80934</div>
-							<div>&nbsp;&nbsp;&nbsp;累计确诊</div>
-						</div>
+	<div style="text-align: center"><img src="/img/img.png"/></div>
+	<div id="home">
+
+		<span style="color: gray; float: left;margin-bottom: 1.5rem; width: 100%">数据更新至2020-3-15</span>
+		<div style="margin-top: 1.25rem; margin-bottom: 1.25rem;">
+			<div class="board">
+				<div class="board-item">
+					<div class="board-item-1">
+						<span style="position: relative">现有确诊</span>
 					</div>
-					<div id="hbs_i" class="hb_s">
-						<div style="width: 100%;height: 100%;padding: 0px 20px;">
-							<div style="font-size: 13px;color: #E3E3E3;">&nbsp;&nbsp;&nbsp;较昨日<span style="color: #F59F2B;">+36</span></div>
-							<div class="hb_nb" style="font-size:30px;color: #F59F2B;">349</div>
-							<div>&nbsp;&nbsp;&nbsp;现存疑似</div>
-							<div style="font-size: 13px;color: #E3E3E3;">&nbsp;&nbsp;&nbsp;较昨日<span style="color: #015478;">+17</span></div>
-							<div class="hb_nb" style="font-size:30px;color: #015478;">3140</div>
-							<div>&nbsp;&nbsp;&nbsp;累计死亡</div>
-						</div>
+					<div id="currentConfirmedCount" style="color: #ff6a57;" class="board-item-number">12160</div>
+				</div>
+				<div class="board-item">
+					<div class="board-item-1">
+						<span style="position: relative">现有疑似</span>
 					</div>
-					<div class="hb_s">
-						<div style="width: 100%;height: 100%;padding: 0px 20px;">
-							<div style="font-size: 13px;color: #E3E3E3;">&nbsp;&nbsp;&nbsp;较昨日<span style="color: #BA761B;">+478</span></div>
-							<div class="hb_nb" style="font-size:30px;color: #BA761B;">7732</div>
-							<div>&nbsp;&nbsp;&nbsp;现存重症</div>
-							<div style="font-size: 13px;color: #E3E3E3;">&nbsp;&nbsp;&nbsp;较昨日<span style="color: #09BFCA;">+1486</span></div>
-							<div class="hb_nb" style="font-size:30px;color: #09BFCA;">60170</div>
-							<div>&nbsp;&nbsp;&nbsp;累计治愈</div>
-						</div>
+					<div id="suspectedCount" style="color: #ec9217" class="board-item-number">95</div>
+				</div>
+				<div class="board-item">
+					<div class="board-item-1">
+						<span style="position: relative">现有重症</span>
 					</div>
+					<div id="seriousCount" style="color: #476da0" class="board-item-number">3610</div>
 				</div>
 			</div>
+			<div class="board">
+				<div class="board-item">
+					<div class="board-item-1">
+						<span style="position: relative">累计确诊</span>
+					</div>
+					<div id="confirmedCount" style="color: #e83132" class="board-item-number">81029</div>
+				</div>
+				<div class="board-item">
+					<div class="board-item-1">
+						<span style="position: relative">累计治愈</span>
+					</div>
+					<div id="curedCount" style="color: #10aeb5" class="board-item-number">65675</div>
+				</div>
+				<div class="board-item">
+					<div class="board-item-1">
+						<span style="position: relative">累计死亡</span>
+					</div>
+					<div id="deadCount" style="color: #4d5054" class="board-item-number">3194</div>
+				</div>
+			</div>
+		</div>
+		<div style="width: 100%;height: 100%;">
+
 			<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
 			<div id="broad">
 				&nbsp;疫情地图
@@ -66,6 +122,9 @@
 				<!-- <div id="foot_r" class="foot_intem" onclick="goBack()">返回首页</div> -->
 			</div>
 		</div>
+
+	</div>
+
 		<script type="text/javascript">
 			// 基于准备好的dom，初始化echarts实例
 			window.onload = function(){
@@ -130,7 +189,12 @@
 						}
 					},
 					data: mydata //数据
-				}]
+				}],
+
+				scaleLimit: {
+					min: 1,
+					max: 1.5,
+				},
 			};
 
 			// 使用刚指定的配置项和数据显示图表。

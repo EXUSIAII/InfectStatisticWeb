@@ -8,6 +8,7 @@
 		<script src="/static/js/echarts.js"></script>
 		<script type="text/javascript" src="/static/js/china.js"></script>
 		<script type="text/javascript" src="/static/js/data.js"></script>
+		<script type="text/javascript" src="/static/js/draw.js"></script>
 		<script type="text/javascript" src="/static/js/mapData.js"></script>
 		<style>
 			body {
@@ -146,10 +147,13 @@
 
 	</div>
 
-		<script type="text/javascript" src="/static/js/draw.js">
+		<script type="text/javascript">
 			// 基于准备好的dom，初始化echarts实例
-
+            window.onload = function(){
+				draw();
+				draw_map();
+			};
 		</script>
-    <a href="i">test</a>
+
 	</body>
 </html>

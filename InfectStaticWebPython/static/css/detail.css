@@ -10,22 +10,21 @@
 	color: #18AFB6;
 }
 
-#broad{
-	height: 50px;
-	width: 900px;
-	margin: 0 auto;
-	padding-left: 20px;
-	background-image: url(../img/color.png);
-	background-repeat: no-repeat
-}
+/*#broad{*/
+/*	height: 50px;*/
+/*	width: 900px;*/
+/*	margin: 0 auto;*/
+/*	padding-left: 20px;*/
+/*	!*background-image: url(../img/color.png);*!*/
+/*	background-repeat: no-repeat*/
+/*}*/
 #h_b {
 	height: 140px;
 	width: 600px;
 	margin: 30px auto;
-	border: 2px solid #E3E3E3;
-	border-radius: 25px;
-	/* padding: 20px; */
-	/* box-shadow: 2px 2px 2px #888888; */
+	/*border: 2px solid #E3E3E3;*/
+	/*border-radius: 25px;*/
+	font-family: "Fira Code", monospace;
 }
 #hb_container{
 	width: 100%;
@@ -96,4 +95,16 @@
 #foot_r{
 	background-color: #10aeb5;
 	color: white;
+}
+#home {
+	background-color: white;
+	width: 60%;
+	margin: 0 20%;
+	margin-bottom: 10%;
+	border-radius: 10px;
+	min-height: 300px;
+	padding: 10px;
+}
+body {
+	background-color: #10aeb5;
 }

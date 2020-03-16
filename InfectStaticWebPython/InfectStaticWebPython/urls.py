@@ -23,8 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     url(r'^index$', views.get_by_date),
-    url('index', views.index),
+    # url('index', views.index),
     url(r'^detail$', views.detail),
-    url(r'^$', views.loading),
-    url(r'^test$', spider.test),
+    # url(r'^$', views.index),
+    url(r'^loading$', views.loading),
 ]

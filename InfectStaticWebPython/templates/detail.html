@@ -2,65 +2,55 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>ECharts</title>
+		<title>Detail</title>
 		<!-- 引入 echarts.js -->
 		<link rel="stylesheet" type="text/css" href="/static/css/detail.css" />
 		<script src="/static/js/echarts.js"></script>
 		<script type="text/javascript" src="/static/js/china.js"></script>
 		<script type="text/javascript" src="/static/js/data.js"></script>
-		<style>body {
-			background-color: #10aeb5;
-		}
-		#home {
-			background-color: white;
-			width: 60%;
-			margin: 0 20%;
-			border-radius: 10px;
-			min-height: 300px;
-			padding: 10px;
-		}</style>
+		<script type="text/javascript" src="/static/js/drawDetail.js"></script>
+		<script type="text/javascript" src="/static/js/mapData.js"></script>
 	</head>
 	<body>
     {% include 'header.html' %}
 		<div id="home">
-
+			<div id="header">
+			</div>
+			<div id="header_sec">
+				首页
+			</div>
 			<div id="h_b">
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 13px;color: #E3E3E3;margin-bottom: 15px;">截至2020-03-10 19:30
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 13px;color: #969696;margin-bottom: 15px;" id="date">截至2020-03-10 19:30
 					全国统计</span>
 				<div id="hb_container">
 					<div class="hb_s" style="margin-left:20px;">
 						<div>
 							<div class="hb_name">&nbsp;&nbsp;&nbsp;现有确诊</div>
-							<div class="hb_nb" style="font-size:30px;color:#F5A847 ;">17624</div>
-							<div style="font-size: 13px;">&nbsp;&nbsp;&nbsp;较昨日<span style="color: #F5A847;">-1473</span></div>
+							<div id="currentConfirmedCount" class="hb_nb" style="font-size:30px;color:#F5A847 ;">17624</div>
 						</div>
 					</div>
 					<div class="hb_s">
 						<div style="width: 100%;padding: 0px 20px;">
 							<div class="hb_name">&nbsp;&nbsp;&nbsp;累计确诊</div>
-							<div class="hb_nb" style="font-size:30px;color: #F22741;">349</div>
-							<div style="font-size: 13px;">&nbsp;&nbsp;&nbsp;较昨日<span style="color: #F22741;">+36</span></div>
+							<div id="confirmedCount" class="hb_nb" style="font-size:30px;color: #F22741;">349</div>
 						</div>
 					</div>
 					<div class="hb_s">
 						<div style="width: 100%;padding: 0px 20px;">
 							<div class="hb_name">&nbsp;&nbsp;&nbsp;累计治愈</div>
-							<div class="hb_nb" style="font-size:30px;color: #46C2CC;">7732</div>
-							<div style="font-size: 13px;">&nbsp;&nbsp;&nbsp;较昨日<span style="color: #46C2CC;">+478</span></div>
+							<div id="curedCount" class="hb_nb" style="font-size:30px;color: #46C2CC;">7732</div>
 						</div>
 					</div>
 					<div class="hb_s">
 						<div style="width: 100%;padding: 0px 20px;">
 							<div class="hb_name">&nbsp;&nbsp;&nbsp;累计死亡</div>
-							<div class="hb_nb" style="font-size:30px;color: #12127E;">7732</div>
-							<div style="font-size: 13px;">&nbsp;&nbsp;&nbsp;较昨日<span style="color: #12127E;">+478</span></div>
+							<div id="deadCount" class="hb_nb" style="font-size:30px;color: #12127E;">7732</div>
 						</div>
 					</div>
 				</div>
 			</div>
 			<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
 			<div id="broad">
-				&nbsp;疫情趋势
 			</div>
 			<div id="main"></div>
 			<div id="foot">
@@ -73,9 +63,14 @@
 			window.onload = function() {
 				var name = window.localStorage.getItem("name");
 				var header = document.getElementById("header_sec").innerText = name;
+				{#boradData(name);#}
+                load_1(name);
 				draw();
-			}
-
+				setDate();
+			};
+			function setDate() {
+                document.getElementById('date').innerText = '更新至'+getNowFormatDate()
+            }
 			function draw() {
 				var name = window.localStorage.getItem("name");
 				let data = getData(name);
@@ -88,6 +83,27 @@
 				var myChart = echarts.init(document.getElementById('main'));
 				let myoption = BaseOption;
 				myoption.title.text = name + ' 新增确诊/疑似趋势';
+				myoption.series= [{
+				    name: '新增确诊',
+                    type: 'line',
+
+                    data: data,
+
+                }, {
+                    name: '新增疑似',
+                    type: 'line',
+                    symbol: 'none',
+							smooth: 'none',
+							itemStyle: {
+								normal: {
+									color: '#ca833a', //改变折线点的颜色
+									lineStyle: {
+										color: '#ca833a' //改变折线颜色
+									}
+								}
+							},
+                    }
+                ];
 				{#myoption.legend.data = ['新增确诊', '新增疑似'];#}
 				myoption.series = data;
 				myChart.setOption(myoption);
@@ -109,11 +125,35 @@
 				{#myoption.legend.data = ['累计治愈', '累计死亡'];#}
 				myoption.series = data;
 				myChart.setOption(myoption);
-				
+
 			}
 			function goBack(){
 				window.location.href ='/index';
 			}
+			function load_1(name) {
+            var url = "/static/json/provinceData.json";
+            var request = new XMLHttpRequest();
+            request.open("get", url);
+            request.send(null);
+            request.onload = function () {
+                if (request.status == 200) {
+                    var json = JSON.parse(request.responseText);
+                    console.log(json);
+                    var currentConfirmedCount = document.getElementById('currentConfirmedCount');
+                    var confirmedCount = document.getElementById('confirmedCount');
+                    var curedCount = document.getElementById('curedCount');
+                    var deadCount = document.getElementById('deadCount');
+                    json.newslist.map(newslist =>{
+                        if(newslist.provinceShortName == name){
+                            currentConfirmedCount.innerText = newslist.currentConfirmedCount;
+                            confirmedCount.innerText = newslist.confirmedCount;
+                            curedCount.innerText = newslist.curedCount;
+                            deadCount.innerText = newslist.deadCount;
+                        }
+                        })
+                }
+            }
+        }
 		</script>
 	</body>
 </html>

@@ -1,7 +1,4 @@
-window.onload = function(){
-				draw();
-				draw_map();
-			};
+
 
 
 			function draw_map(){
@@ -181,6 +178,11 @@ window.onload = function(){
 				let myoption = BaseOption;
 				myoption.title.text =  '全国新增确诊/疑似趋势';
 				// {#myoption.legend.data = ['新增确诊', '新增疑似'];#}
+					myoption.xAxis = [{
+						type: 'category',
+						boundaryGap: false,
+						data: xA_data,
+					}];
 					myoption.series = [{
 							name: '新增确诊',
 							type: 'line',
@@ -229,6 +231,11 @@ window.onload = function(){
 				let myoption = BaseOption;
 				myoption.title.text =  '全国累计治愈/累计死亡';
 				// myoption.legend.data = ['累计治愈', '累计死亡'];
+				myoption.xAxis = [{
+						type: 'category',
+						boundaryGap: false,
+						data: xA_data
+					}];
 					myoption.series = [{
 							name: '累计治愈',
 							type: 'line',

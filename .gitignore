@@ -1,9 +1,6 @@
 
-src/.idea
-py/.idea
-py/.venv
-py/py/.venv
-py/.idea/inspectionProfiles/profiles_settings.xml
-py/.idea/misc.xml
-py/db.sqlite3
-*.xml
+InfectStaticWebPython/.idea/*
+
+InfectStaticWebPython/InfectStaticWebPython/__pycache__/*
+InfectStaticWebPython/venv/*
+src/.idea/*

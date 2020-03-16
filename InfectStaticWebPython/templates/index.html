@@ -4,10 +4,11 @@
 		<meta charset="utf-8">
 		<title>InfectStatisticWeb</title>
 		<!-- 引入 echarts.js -->
-		<link rel="stylesheet" type="text/css" href="css/index.css" />
-		<script src="js/echarts.js"></script>
-		<script type="text/javascript" src="js/china.js"></script>
-		<script type="text/javascript" src="js/data.js"></script>
+		<link rel="stylesheet" type="text/css" href="/static/css/index.css" />
+		<script src="/static/js/echarts.js"></script>
+		<script type="text/javascript" src="/static/js/china.js"></script>
+		<script type="text/javascript" src="/static/js/data.js"></script>
+		<script type="text/javascript" src="/static/js/countryData.js"></script>
 		<style>
 			body {
 				background-color: #10aeb5;
@@ -60,7 +61,7 @@
 		</style>
 	</head>
 	<body>
-	<div style="text-align: center"><img src="./img/img.png"/></div>
+	<div style="text-align: center"><img src="/static/img/img.png"/></div>
 	<div id="home">
 
 		<span style="color: gray; float: left;margin-bottom: 1.5rem; width: 100%">数据更新至2020-3-15</span>
@@ -205,7 +206,7 @@
 				// 控制台打印数据的名称
 				console.log(params.name);
 				window.localStorage.setItem("name", params.name);
-				window.location.href = 'loading.html';
+				window.location.href = '/detail';
 			});
 
 			function draw() {
@@ -219,7 +220,7 @@
 				var myChart1 = echarts.init(document.getElementById('main_two'));
 				let myoption = BaseOption;
 				myoption.title.text =  '全国新增确诊/疑似趋势';
-				// myoption.legend.data = ['新增确诊', '新增疑似'];
+				{#myoption.legend.data = ['新增确诊', '新增疑似'];#}
 					myoption.series = [{
 							name: '新增确诊',
 							type: 'line',
@@ -267,7 +268,7 @@
 				var myChart1 = echarts.init(document.getElementById('main_two'));
 				let myoption = BaseOption;
 				myoption.title.text =  '全国累计治愈/累计死亡';
-				// myoption.legend.data = ['累计治愈', '累计死亡'];
+				{#myoption.legend.data = ['累计治愈', '累计死亡'];#}
 					myoption.series = [{
 							name: '累计治愈',
 							type: 'line',

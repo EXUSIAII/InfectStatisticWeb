@@ -4,10 +4,10 @@
 		<meta charset="utf-8">
 		<title>ECharts</title>
 		<!-- 引入 echarts.js -->
-		<link rel="stylesheet" type="text/css" href="css/detail.css" />
-		<script src="js/echarts.min.js"></script>
-		<script type="text/javascript" src="js/china.js"></script>
-		<script type="text/javascript" src="js/data.js"></script>
+		<link rel="stylesheet" type="text/css" href="/static/css/detail.css" />
+		<script src="/static/js/echarts.js"></script>
+		<script type="text/javascript" src="/static/js/china.js"></script>
+		<script type="text/javascript" src="/static/js/data.js"></script>
 		<style>body {
 			background-color: #10aeb5;
 		}
@@ -92,7 +92,7 @@
 				var myChart = echarts.init(document.getElementById('main'));
 				let myoption = BaseOption;
 				myoption.title.text = name + ' 新增确诊/疑似趋势';
-				myoption.legend.data = ['新增确诊', '新增疑似'];
+				{#myoption.legend.data = ['新增确诊', '新增疑似'];#}
 				myoption.series = data;
 				myChart.setOption(myoption);
 
@@ -110,13 +110,13 @@
 				var myChart = echarts.init(document.getElementById('main'));
 				let myoption = BaseOption;
 				myoption.title.text = name + ' 累计治愈/累计死亡';
-				myoption.legend.data = ['累计治愈', '累计死亡'];
+				{#myoption.legend.data = ['累计治愈', '累计死亡'];#}
 				myoption.series = data;
 				myChart.setOption(myoption);
 				
 			}
 			function goBack(){
-				window.location.href ='index.html';
+				window.location.href ='/index';
 			}
 		</script>
 	</body>

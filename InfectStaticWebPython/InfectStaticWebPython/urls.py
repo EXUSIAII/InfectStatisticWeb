@@ -17,11 +17,14 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path
 
-from . import views
+from . import views, spider
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^index$', views.index),
+
+    url(r'^index$', views.get_by_date),
+    url('index', views.index),
     url(r'^detail$', views.detail),
     url(r'^$', views.loading),
+    url(r'^test$', spider.test),
 ]

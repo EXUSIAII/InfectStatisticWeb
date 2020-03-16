@@ -1,17 +1,10 @@
-#header {
-	height: 50px;
-	width: 900px;
-	border: 2px solid #EFEFEF;
-	margin: 0 auto;
-	line-height: 50px;
-	font-size: 17px;
-}
+
 #broad{
 	height: 50px;
 	width: 900px;
 	margin: 0 auto;
 	padding-left: 20px;
-	background-image: url(../img/color.png);
+	/*background-image: url(../img/color.png);*/
 	background-repeat: no-repeat
 }
 #h_b {
@@ -54,11 +47,10 @@
 	text-align: center;
 }
 
-#foot{
+.foot{
 	width: 800px;
 	height: 50px;
-	margin: 0 auto;
-	margin-top: 10px;
+	margin: 40px auto;
 }
 .foot_intem{
 	height: 40px;
@@ -71,7 +63,7 @@
 	cursor: pointer;
 	color:#10aeb5;
 }
-#foot_l{
+.foot_l{
 	margin-left: 25%;
 	border: 2px solid #10aeb5;
 	border-top-left-radius:15px;
@@ -79,20 +71,36 @@
 	border-bottom-left-radius:15px;
 	
 }
-
-#foot_c{
+.foot_c{
 	border: 2px solid #10aeb5;
 	border-top-right-radius:15px;
 	border-bottom-right-radius:15px;
 }
 
-#foot_r{
+.foot_r{
 	border: 2px solid #10aeb5;
 	border-radius: 15px;
 	margin-left: 50px;
 }
 
-#foot_r{
-	background-color: #00BEC9;
+.foot_r{
+	background-color: #10aeb5;
 	color: white;
+}
+#selectDate{
+	margin: 20px auto;
+	width: 100%;
+	text-align: center;
+}
+#selectDate select{
+	padding: 5px 20px;
+	border: 2px solid #10aeb5;
+	border-radius: 5px;
+}
+#selectDate input{
+	padding: 5px 20px;
+	background-color: #10aeb5;
+	color: white;
+	border: 0;
+	border-radius: 5px;
 }
